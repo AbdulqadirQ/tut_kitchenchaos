@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private GameInput gameInput;
+    [SerializeField] private LayerMask countersLayerMask;
 
     private bool isWalking;
     private Vector3 lastInteractDir;
@@ -28,7 +29,8 @@ public class Player : MonoBehaviour {
             lastInteractDir = moveDir;
         }
         float interactDistance = 2f;
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance)) { // stores object that's been raycast in the `out` var raycastHit
+        // stores object that's been raycast in the `out` var raycastHit, BUT only on Counters layer
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask)) {
             if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter)) { // Null check for if object ClearCoutner exists at transform 
                 clearCounter.Interact();
             }
