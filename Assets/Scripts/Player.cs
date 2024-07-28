@@ -28,10 +28,10 @@ public class Player : MonoBehaviour {
             lastInteractDir = moveDir;
         }
         float interactDistance = 2f;
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance)) {
-            Debug.Log(raycastHit.transform);
-        } else {
-            Debug.Log("-");
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance)) { // stores object that's been raycast in the `out` var raycastHit
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter)) { // Null check for if object ClearCoutner exists at transform 
+                clearCounter.Interact();
+            }
         }
     }
     private void HandleMovement() {

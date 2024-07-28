@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 892590995029683241}
   - component: {fileID: 186938946993280886}
+  - component: {fileID: 6080184505708504224}
   m_Layer: 0
   m_Name: ClearCounter
   m_TagString: Untagged
@@ -137,6 +138,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.46, y: 1.26, z: 1.32}
   m_Center: {x: -0, y: 0.6, z: 0}
+--- !u!114 &6080184505708504224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874648319767747666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ee20c64b0e0ed42a8788eed703ff51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5984294948211631609
 GameObject:
   m_ObjectHideFlags: 0
