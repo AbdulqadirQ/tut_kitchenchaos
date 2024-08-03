@@ -7,18 +7,8 @@ public class ClearCounter : MonoBehaviour, IKitchenObjectParent {
     // It's personal preference whether to use type 'Transform' or 'GameObject' for when declaring a prefab
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     [SerializeField] private Transform counterTopPoint;
-    [SerializeField] private ClearCounter secondClearCounter;
-    [SerializeField] private bool testing;
 
     private KitchenObject kitchenObject;
-
-    private void Update() {
-        if (testing && Input.GetKeyDown(KeyCode.T)) {
-            if (kitchenObject != null) {
-                kitchenObject.SetKitchenObjectParent(secondClearCounter);
-            }
-        }
-    }
 
     public void Interact(Player player) {
         if (kitchenObject == null) {
