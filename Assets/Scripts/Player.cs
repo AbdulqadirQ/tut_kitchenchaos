@@ -13,7 +13,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     // custom class for making use of custom arguments
     public class OnSelectedCounterChangedEventArgs : EventArgs {
-        public ClearCounter selectedCounter;
+        public BaseCounter selectedCounter;
     }
 
     [SerializeField] private float moveSpeed = 10f;
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
 
     private bool isWalking;
     private Vector3 lastInteractDir;
-    private ClearCounter selectedCounter;
+    private BaseCounter selectedCounter;
     private KitchenObject kitchenObject;
 
     // Awake() always runs before Start() across all scripts, so 1 idea is to use Awake() for any initialisations of the current class
@@ -66,9 +66,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
         float interactDistance = 2f;
         // stores object that's been raycast in the `out` var raycastHit, BUT only on Counters layer
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask)) {
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter)) { // Null check for if object ClearCoutner exists at transform 
-                if (clearCounter != selectedCounter) {
-                    SetSelectedCounter(clearCounter);
+            if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter)) { // Null check for if object ClearCoutner exists at transform 
+                if (baseCounter != selectedCounter) {
+                    SetSelectedCounter(baseCounter);
                 }
             } else {
                 SetSelectedCounter(null);
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
     }
 
-    private void SetSelectedCounter(ClearCounter selectedCounter) {
+    private void SetSelectedCounter(BaseCounter selectedCounter) {
         this.selectedCounter = selectedCounter;
 
         // emits the event
